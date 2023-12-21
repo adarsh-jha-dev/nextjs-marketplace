@@ -1,4 +1,4 @@
-import { getServerSiteUser } from "@/lib/payload-utils";
+import { getServerSideUser } from "@/lib/payload-utils";
 import Image from "next/image";
 import { cookies } from "next/headers";
 import { getPayloadClient } from "@/get-payload";
@@ -19,7 +19,7 @@ const ThankYouPage = async ({ searchParams }: PageProps) => {
   const orderId = searchParams.orderId;
   const nextCookies = cookies();
 
-  const { user } = await getServerSiteUser(nextCookies);
+  const { user } = await getServerSideUser(nextCookies);
   const payload = await getPayloadClient();
 
   const { docs: orders } = await payload.find({
